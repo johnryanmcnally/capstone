@@ -9,7 +9,7 @@ import json
 import spacy
 
 
-relpath = 'models/'
+relpath = 'streamlitapp/models/'
 model = tf.keras.models.load_model(relpath+'model_reduced_e20_full.h5', compile=False)
 test_titles = ['chocolate cake', 'chocolate brownies', 'chicken noodle soup', 'mac and cheese', 'chicken diable']
 thresh = 0.015

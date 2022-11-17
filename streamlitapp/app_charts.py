@@ -3,7 +3,7 @@ import numpy as np
 import altair as alt
 import json
 
-
+modelpath = 'streamlitapp/models/'
 # ingredient list
 def ingredient_list(ings):
     '''
@@ -23,7 +23,7 @@ def ingredient_list(ings):
     
     # Find common pairings
     ingdf['common pairings'] = ''
-    with open('models/common_pairs.json','r') as f:
+    with open(modelpath+'common_pairs.json','r') as f:
         most_common_pairs = json.load(f)
     for i,ing in enumerate(ings):
         ing_pairs = [x for x in most_common_pairs if ing in x]
@@ -131,6 +131,6 @@ def tSNE_chart(df,recipedf):
             width = 1000
         )
     
-    combined.save('_static/tsne.html')
+    # combined.save('_static/tsne.html')
 
     return combined, combined_notext

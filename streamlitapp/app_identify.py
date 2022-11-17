@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 from gensim.models import Word2Vec
 
-modelpath = 'models/'
+modelpath = 'streamlitapp/models/'
 
 # key vectors
 with open(modelpath+'w2v_key_vecs.json','r') as f:

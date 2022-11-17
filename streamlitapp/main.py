@@ -5,7 +5,7 @@ import app_predict
 import app_identify
 import app_charts
 
-modelpath = 'models/'
+modelpath = 'streamlitapp/models/'
 
 logo = Image.open(modelpath+'rec2logo_v2.png')
 
