@@ -1,9 +1,12 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from PIL import Image
 import app_predict
 import app_identify
 import app_charts
+import app_transform
+import cv2
 
 modelpath = 'streamlitapp/models/'
 
@@ -19,12 +22,37 @@ title_col2.markdown('# Recipe Exploration')
 title_col2.markdown('A place to learn about your favorite recipes and explore new ones')
 
 # tab1 = st.tabs(['Recipe Information'])
-entry_col1, mid, entry_col2 = st.columns([2,1,2], gap='small')
-test_title = entry_col1.text_input('Enter A Dish Name: ')
-mid.markdown('## or')
-entry_col2.text('')
-entry_col2.button('Upload a picture [placeholder]')
+entry_col1, mid, entry_col2 = st.columns([5,1,7], gap='small')
 
+mid.markdown('## or')
+
+@st.experimental_singleton
+def transformer_model():
+    return app_transform.get_model()
+transformer = transformer_model()
+
+
+form = entry_col2.form("my-form", clear_on_submit=True)
+img = form.file_uploader("FILE UPLOADER")
+submitted = form.form_submit_button("UPLOAD!")
+
+imgspace = 4
+spacer1, image_col, spacer2 = st.columns([1,imgspace,1])
+
+if submitted:
+    # Preprocess Image
+    img = np.asarray(bytearray(img.read()), dtype=np.uint8)
+    img = cv2.imdecode(img, 1)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, (224, 224))
+    result = transformer.simple_gen(img, temperature=0.0)
+    result = result.numpy().decode()
+    image_col.image(img, caption='Predicted Title: '+result, width=imgspace*100)
+else:
+    result=st.session_state['img'] # pulls cached version whatever is typed into the text input below
+    image_col.empty()
+
+test_title = entry_col1.text_input('Enter A Dish Name: ', value = result, key='img')
 # this decorator + function makes it so the top charts don't regenerate when changing
 # from food type to ethnicity or number of tokens in t-SNE chart
 @st.experimental_memo
