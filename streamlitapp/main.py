@@ -19,7 +19,7 @@ title_col1.image(logo, width=125)
 title_col2.markdown('# Recipe Exploration')
 title_col2.markdown('A place to learn about your favorite recipes and explore new ones')
 
-entry_col1, mid, entry_col2 = st.columns([5,1,7], gap='small')
+entry_col1, mid, entry_col2 = st.columns([5,1,8], gap='small')
 
 mid.markdown('## or')
 
@@ -30,13 +30,13 @@ transformer = transformer_model()
 
 
 form = entry_col2.form("my-form", clear_on_submit=True)
-img = form.file_uploader("FILE UPLOADER")
-submitted = form.form_submit_button("UPLOAD!")
+img = form.file_uploader("FILE UPLOADER", label_visibility='collapsed')
+submitted = form.form_submit_button("Submit Uploaded Image")
 
 imgspace = 4
 spacer1, image_col, spacer2 = st.columns([1,imgspace,1])
-st.session_state['img'] = ''
-if submitted:
+
+if submitted and img is not None:
     # Preprocess Image
     img = np.asarray(bytearray(img.read()), dtype=np.uint8)
     img = cv2.imdecode(img, 1)
@@ -44,12 +44,24 @@ if submitted:
     img = cv2.resize(img, (224, 224))
     result = transformer.simple_gen(img, temperature=0.0)
     result = result.numpy().decode()
-    image_col.image(img, caption='Predicted Title: '+result, width=imgspace*100)
+    image_col.markdown('#### Predicted Title: \n ##### {}'.format(result))
+    image_col.image(img, width=imgspace*100)
+    st.session_state['result'] = result
+elif 'imgtitle' in st.session_state:
+    if st.session_state['imgtitle'] != '':
+        result = st.session_state['imgtitle'] # pulls cached version whatever is typed into the text input below
+        if result == st.session_state['result']:
+            image_col.markdown('#### Predicted Title: \n ##### {}'.format(result))
+            image_col.image(img, width=imgspace*100)
+        else:
+            image_col.empty()
+    else:
+        result = ''
 else:
-    result=st.session_state['img'] # pulls cached version whatever is typed into the text input below
-    image_col.empty()
+    st.session_state['result'] = ''
+    result = ''
 
-test_title = entry_col1.text_input('Enter A Dish Name: ', value = result, key='img')
+test_title = entry_col1.text_input('Enter A Dish Name: ', value = result, key='imgtitle')
 # this decorator + function makes it so the top charts don't regenerate when changing
 # from food type to ethnicity or number of tokens in t-SNE chart
 @st.experimental_memo
