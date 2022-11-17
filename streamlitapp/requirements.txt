@@ -11,5 +11,4 @@ en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_
 streamlit==1.13.0
 pillow==8.2.0
 einops==0.6.0
-opencv-python==4.5.1.48
-opencv-python-headless==4.5.1.48
+opencv-python==4.5.1
