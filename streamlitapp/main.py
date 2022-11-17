@@ -11,17 +11,14 @@ import cv2
 modelpath = 'streamlitapp/models/'
 
 logo = Image.open(modelpath+'rec2logo_v2.png')
-
 st.set_page_config(
     page_title="Rec^2", page_icon=logo, layout='centered',
 )
 title_col1, title_col2 = st.columns([1,4])
 title_col1.image(logo, width=125)
 title_col2.markdown('# Recipe Exploration')
-# st.markdown('# ![](logo) RecSquared Recipe Exploration')
 title_col2.markdown('A place to learn about your favorite recipes and explore new ones')
 
-# tab1 = st.tabs(['Recipe Information'])
 entry_col1, mid, entry_col2 = st.columns([5,1,7], gap='small')
 
 mid.markdown('## or')
@@ -38,7 +35,7 @@ submitted = form.form_submit_button("UPLOAD!")
 
 imgspace = 4
 spacer1, image_col, spacer2 = st.columns([1,imgspace,1])
-
+st.session_state['img'] = ''
 if submitted:
     # Preprocess Image
     img = np.asarray(bytearray(img.read()), dtype=np.uint8)
