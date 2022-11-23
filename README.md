@@ -26,7 +26,7 @@ A few sentences about how to run/train the recipe recognition model
 A few sentences about how to run/train the ingredient prediction model
 
 #### Cuisine Identification
-A few sentences about how to run/train the ingredient prediciton model
+A few sentences about how to run/train the cuisine identification model
 
 #### Streamlit App
 A few sentences about how the streamlit app is organized
