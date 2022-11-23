@@ -28,7 +28,7 @@ A few sentences about how to run/train the ingredient prediction model
 #### Cuisine Identification
 A few sentences about how to run/train the ingredient prediciton model
 
-# Streamlit App
+#### Streamlit App
 A few sentences about how the streamlit app is organized
 
 ## How to Help
