@@ -2,13 +2,13 @@ import json
 import re
 import spacy
 
-f = open('train_title_and_ingredients.json')
+f = open('train.json')
 recipes = json.load(f)
 f.close()
 
 print(len(recipes), "Recipes Loaded")
 
-f = open('ingredient_map_01.json')
+f = open('ingredient_map.json')
 ing_map = json.load(f)
 f.close()
 
@@ -52,13 +52,9 @@ for recipe in recipes:
             if token.pos_ not in ['NUM', 'PUNCT', 'CCONJ']:
                 if token.lower_ not in STOPWORDS:
                     ing.append(token.lower_)
-                    # Add to token dictionary
-                    # if token.lower_ in tok_dict:
-                    #     tok_dict[token.lower_] += 1
-                    # else:
-                    #     tok_dict[token.lower_] = 1
         # Reassemble Ingredient Name and Add to Dictionary
         ing = ' '.join(ing).strip()
+        # If key in mapping, replace with reduced version
         if ing in ing_map.keys():
           ing = ing_map[ing]
         if ing in ing_dict:
@@ -66,7 +62,7 @@ for recipe in recipes:
         else:
             ing_dict[ing] = 1
 
-    # Print Progress STatus to Command Line
+    # Print Progress Status to Command Line
     i += 1
     if i > 10000:
         i = 0
