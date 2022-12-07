@@ -20,7 +20,7 @@ First, download or fork the repo and your dataset of choice (if you are interest
 The cleaning scripts expect the data in a JSON format according to the Recipe1M+ dataset. [parseIngredients.py](https://github.com/mcnaljr/capstone/blob/main/data_cleaning/parseIngredients.py) extracts and tabulates a clean list of the 999 most frequent ingredients. it uses a list of stop words and ingredient mapping to reduce redundant ingredients, which you may or may not want to modify (perhaps depending on if you believe "tomatoes" and "crushed tomatoes" are unique ingredients. [parseTitle.py](https://github.com/mcnaljr/capstone/blob/main/data_cleaning/parseTitle.py) similarly extracts the most frequent title tokens to initialize the vocabulary for the ingredient prediction model.
 
 #### Recipe Recognition
-A few sentences about how to run/train the recipe recognition model
+[recognition.py](https://github.com/mcnaljr/capstone/blob/main/model_generation/recognition.py) is set up to train on a single image of images where the filenames are hyphenated named of the recipes they depict (like the [Epicurious dataset](https://www.kaggle.com/datasets/pes12017000148/food-ingredients-and-recipe-dataset-with-images)). The script can either train a new model or load weights from a previous training. After training (or if training is skipped), attention map is generated for a test image. Model architecture can be edited by swapping out the image feature extractor, adjusting the parameters of the Captioner declaration, or changing the layer construction entirely.
 
 #### Ingredient Prediction
 A few sentences about how to run/train the ingredient prediction model
