@@ -10,7 +10,7 @@ with open('data_cleaning/topkey_mapping.json','r') as f:
 # load data from parsed json
 print('loading data')
 DATAPATH = '../data/'  # Change to be the folder where parsed_trainfile.csv is located
-df = pd.read_csv(DATAPATH+'parsed_trainfile.csv')
+df = pd.read_csv(DATAPATH+'parsed_file.csv')
 df.ingredients = [literal_eval(x) for x in df.ingredients]
 df = df.drop(columns = ['Unnamed: 0'])
 print('data loaded')
