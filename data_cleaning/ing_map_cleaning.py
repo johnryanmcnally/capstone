@@ -6,7 +6,7 @@ import json
 # load manual ingredient mapping
 with open('data_cleaning/topkey_mapping.json','r') as f:
     sp = json.load(f)
-
+ 
 # load data from parsed json
 print('loading data')
 DATAPATH = '../data/'  # Change to be the folder where parsed_trainfile.csv is located
