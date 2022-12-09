@@ -31,7 +31,7 @@ The cuisine identification portion of this project uses topic vectors from an La
 Once the models have been trained use [create_keyvectors.py](https://github.com/mcnaljr/capstone/blob/main/model_generation/create_keyvectors.py) to generate the key vectors which are used in the app and [create_tsne_df.py](https://github.com/mcnaljr/capstone/blob/main/model_generation/create_tsne_df.py) to generate the supporting dfs for the t-SNE plot.
 
 #### Streamlit App
-A few sentences about how the streamlit app is organized
+The /streamlitapp folder contains all of the scripts and files required to run the web app. [main.py](https://github.com/mcnaljr/capstone/blob/main/streamlitapp/main.py) is the script that controls the appearance of the site and runs and displays data from the other supporting scripts in the directory. All models and data are saved in the /models subdirectory.
 
 ## How to Help
 Describe -at a high level- what the constraints are for each model and the process for submitting them for review
