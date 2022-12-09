@@ -6,7 +6,9 @@ import pandas as pd
 print("Create DataFrame of Vectorized Titles and Ingredients")
 
 # Open JSON Files --------------------------------------------------------------
-f = open('json/ingredients_999_reduced_train.json')
+FILENAME = 'data/train.json' # Change this to be the JSON from the Recipe1M+ dataset
+
+f = open('json/ingredients_999.json')
 ing_set = json.load(f)
 ing_keys = list(ing_set.keys())
 f.close()
@@ -16,9 +18,13 @@ title_toks = json.load(f)
 title_toks_keys = list(title_toks.keys())
 f.close()
 
-f = open('data/test.json')
+f = open(FILENAME)
 recipes = json.load(f)
 print(len(recipes), 'recipes')
+f.close()
+
+f = open('ing_map.json')
+ing_map = json.load(f)
 f.close()
 
 # Initialize Accumulators and Spacy---------------------------------------------
@@ -79,7 +85,10 @@ for recipe in recipes:
             if token.pos_ not in ['NUM', 'PUNCT', 'CCONJ']:
                 if token.lower_ not in INGREDIENT_STOPWORDS:
                     ing.append(token.lower_)
+        # Reassemble Ingredient name and Add to Dictionary
         ing = ' '.join(ing).strip()
+        if ing in ing_map.keys():
+            ing = ing_map[ing]
         # ing_list.append(ing)
         if ing in ing_set:
             y[ing_keys.index(ing) + 1] = 1
@@ -107,4 +116,4 @@ df['y'] = pd.Series(ys)
 
 print(df)
 
-df.to_pickle('df_test_reduced.pkl')
+df.to_pickle('df_train.pkl')
