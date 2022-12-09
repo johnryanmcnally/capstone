@@ -1,3 +1,9 @@
+# Streamlit implementation of recipe recognition model
+# Image --> Recipe Title
+# Adapted from Tensorflow's "Image captioning with visual attention" tutorial
+# https://www.tensorflow.org/tutorials/text/image_captioning
+# Layer construction taken directly from tutorial with slight modifications
+
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -19,7 +25,7 @@ def get_model():
         s = tf.strings.regex_replace(s, f'\d+', '')
         s = tf.strings.join(['startSeq', s, 'endSeq'], separator=' ')
         return s
-
+    # Image Feature Extractor
     mobilenet = tf.keras.applications.MobileNetV3Small(
         input_shape=IMAGE_SHAPE,
         include_top=False,
