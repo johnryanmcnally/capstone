@@ -23,7 +23,7 @@ recipes = json.load(f)
 print(len(recipes), 'recipes')
 f.close()
 
-f = open('ing_map.json')
+f = open('ingredient_map.json')
 ing_map = json.load(f)
 f.close()
 
