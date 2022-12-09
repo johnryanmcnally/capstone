@@ -16,6 +16,9 @@ If you're just interested in testing the existing models and exploring the relat
 
 ### Using the Code
 First, download or fork the repo and your dataset of choice (if you are interested in training).
+### Data Access Statement
+The Recipe1M+ dataset is available at http://pic2recipe.csail.mit.edu/ to those who agree to MIT's terms and conditions.
+The Epicurious dataset is available through [Kaggle](https://www.kaggle.com/datasets/pes12017000148/food-ingredients-and-recipe-dataset-with-images), which requires a Kaggle account for download. 
 #### Data Cleaning
 The cleaning scripts expect the data in a JSON format according to the Recipe1M+ dataset. [parseIngredients.py](https://github.com/mcnaljr/capstone/blob/main/data_cleaning/parseIngredients.py) extracts and tabulates a clean list of the 999 most frequent ingredients. it uses a list of stop words and ingredient mapping to reduce redundant ingredients, which you may or may not want to modify (perhaps depending on if you believe "tomatoes" and "crushed tomatoes" are unique ingredients. [parseTitle.py](https://github.com/mcnaljr/capstone/blob/main/data_cleaning/parseTitle.py) similarly extracts the most frequent title tokens to initialize the vocabulary for the ingredient prediction model. [json_to_csv.py](https://github.com/mcnaljr/capstone/blob/main/data_cleaning/json_to_csv.py) will extract both the ingredients and titles from the chosen JSON and save them to a condensed csv file. For the training subset of the Recipe1M+ dataset this process will take ~10 hours. [ing_map_cleaning.py](https://github.com/mcnaljr/capstone/blob/main/data_cleaning/ing_map_cleaning.py) will further clean the ingredients according to a manually created ingredient mapping. This mapping converts tokens like 'all purpose flour' and 'AP flour' to simply 'flour'.
 
