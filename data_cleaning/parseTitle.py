@@ -3,7 +3,8 @@
 import json
 import spacy
 
-f = open('data/train.json')
+FILENAME = 'data/train.json' # Change this to be the JSON from the Recipe1M+ dataset
+f = open(FILENAME)
 recipes = json.load(f)
 print(len(recipes), 'recipes')
 f.close()
