@@ -5,7 +5,6 @@ from sklearn.manifold import TSNE
 import matplotlib.cm as cm
 import pickle
 from sklearn.decomposition import TruncatedSVD
-import networkx as nx
 import itertools
 from collections import Counter
 import json
