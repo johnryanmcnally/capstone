@@ -2,8 +2,9 @@ import json
 import re
 import spacy
 import pandas as pd
- 
-f = open('data/train.json')
+
+FILENAME = 'data/train.json' # Change this to be the JSON from the Recipe1M+ dataset
+f = open(FILENAME)
 recipes = json.load(f)
 f.close()
 df = pd.DataFrame(recipes)
