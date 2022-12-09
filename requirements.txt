@@ -1,0 +1,19 @@
+pandas==1.4.3
+numpy==1.23.3
+altair==4.2.0
+json5==0.9.10
+pickleshare==0.7.5
+sklearn==0.0
+gensim==4.2.0
+tensorflow
+spacy==3.4.1
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.0/en_core_web_sm-3.4.0-py3-none-any.whl
+streamlit==1.13.0
+pillow==8.2.0
+einops==0.6.0
+opencv-python-headless <= 4.5.1.48
+matplotlib==3.6.2
+compress-pickle==2.1.0
+wordcloud==1.8.2.2
+nltk==3.7
+tqdm==4.64.0
