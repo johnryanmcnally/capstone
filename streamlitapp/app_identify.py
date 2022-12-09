@@ -6,16 +6,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 from gensim.models import Word2Vec
 
-modelpath = 'streamlitapp/models/'
+RELMODELPATH = 'streamlitapp/models/'
 
 # key vectors
-with open(modelpath+'w2v_key_vecs.json','r') as f:
+with open(RELMODELPATH+'w2v_key_vecs.json','r') as f:
     w2v_key_vecs = json.load(f)
-with open(modelpath+'lda_key_vecs.json','r') as f:
+with open(RELMODELPATH+'lda_key_vecs.json','r') as f:
     lda_key_vecs = json.load(f)
 
 # Vectorizer
-with open(modelpath+'vectorizer.pkl','rb') as f:
+with open(RELMODELPATH+'vectorizer.pkl','rb') as f:
     vectorizer = pickle.load(f)
 
 # Vectorize key vectors
@@ -67,7 +67,7 @@ def identify(test_vec):
 
 ##########################
 # t-SNE Plot
-w2v_model = Word2Vec.load(modelpath+'new_word_embedding_model.model')
+w2v_model = Word2Vec.load(RELMODELPATH+'new_word_embedding_model.model')
 
 def df_plot(recipe_name, ings, n_topwords):
     
@@ -83,7 +83,7 @@ def df_plot(recipe_name, ings, n_topwords):
     embedding_clusters = np.array(embedding_clusters)
 
     # load SVD model fit on total data then transform ingredient clusters
-    with open(modelpath+'tsne_plot/svdmodel_{}.pkl'.format(n_topwords),'rb') as f:
+    with open(RELMODELPATH+'tsne_plot/svdmodel_{}.pkl'.format(n_topwords),'rb') as f:
         svdmodel = pickle.load(f)
     embeddings = np.array(svdmodel.transform(embedding_clusters))
 

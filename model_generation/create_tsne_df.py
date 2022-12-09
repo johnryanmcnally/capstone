@@ -12,9 +12,10 @@ import json
 from ast import literal_eval
 
 # load w2v model if already trained
-relmodelpath = 'streamlit_app/models/'
-w2v_model = Word2Vec.load(relmodelpath+'new_word_embedding_model.model')
+RELMODELPATH = 'streamlitapp/models/'
+w2v_model = Word2Vec.load(RELMODELPATH+'new_word_embedding_model.model')
 
+print('creating t-SNE dfs')
 def df_plot(keys, n_topwords):
     max_topwords = 30
     embedding_clusters = []
@@ -31,12 +32,11 @@ def df_plot(keys, n_topwords):
     perp = (n_topwords*len(keys))**.5 #st.slider('Perplexity',1,50,10)
     embedding_clusters = np.array(embedding_clusters)
     n, m, k = embedding_clusters.shape
-    print(n,m,k)
     tsne_model_en_2d = TSNE(perplexity=perp, n_components=2, init='pca', n_iter=3500, random_state=32)
     svd = TruncatedSVD(n_components=2, n_iter=5, random_state=32)
     embeddings_en_2d = np.array(svd.fit_transform(embedding_clusters.reshape(n * m, k))).reshape(n, m, 2)
 
-    with open('streamlit_app/models/tsne_plot/svdmodel_{}.pkl'.format(n_topwords), 'wb') as f:
+    with open(RELMODELPATH+'tsne_plot/svdmodel_{}.pkl'.format(n_topwords), 'wb') as f:
         pickle.dump(svd, f)
 
     colors = cm.nipy_spectral(np.linspace(0, .95, len(keys)))
@@ -60,15 +60,15 @@ n_topwords = [5,10,15,20,25,30]
 
 for n in n_topwords:
     df = df_plot(keys, n)
-    df.to_csv('streamlit_app/models/tsne_plot/tsnedf_{}.csv'.format(n))
-
+    df.to_csv(RELMODELPATH+'tsne_plot/tsnedf_{}.csv'.format(n))
+print('t-SNE dfs created and saved to', RELMODELPATH+'tsne_plot/')
 ######################################################################################
 ## create common ingredient pairs df
-print('loading df')
-df = pd.read_csv('C:/Users/jrmcn/MADS/MADS_Capstone/data/newcleaned_trainfile.csv')
+DATAPATH = '../data/' # Change this path to where the data is saved
+print('creating common pairings df')
+df = pd.read_csv(DATAPATH+'newcleaned_trainfile.csv')
 df.ingredients = [literal_eval(x) for x in df.ingredients]
 df = df.drop(columns = ['Unnamed: 0'])
-print('df loaded')
 # create complete edge set
 edges = []
 for ingr_list in df.ingredients:
@@ -78,12 +78,11 @@ for ingr_list in df.ingredients:
 # calculate edge weights
 weighted_edges = Counter()
 weighted_edges.update(edges)
-print('edges calculated')
 
 most_common = [x[0] for x in weighted_edges.most_common(100000)]
-with open('streamlit_app/models/common_pairs.json','w') as f:
+with open(RELMODELPATH+'common_pairs.json','w') as f:
     json.dump(most_common, f)
-print('model saved')
+print('common pairings df created and saved to', RELMODELPATH+'common_pairs.json')
 
 
 

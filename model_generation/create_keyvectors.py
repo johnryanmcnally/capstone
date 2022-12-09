@@ -8,8 +8,8 @@ import compress_pickle
 
 
 # load w2v model
-relmodelpath = 'streamlit_app/models/'
-w2v_model = Word2Vec.load(relmodelpath+'new_word_embedding_model.model')
+RELMODELPATH = 'streamlitapp/models/'
+w2v_model = Word2Vec.load(RELMODELPATH+'new_word_embedding_model.model')
 keys = ['american','mexican',
         'italian','polish','german','spanish','french','greek','english','portuguese',
         'indian','chinese','vietnamese','thai','japanese','korean',
@@ -25,19 +25,16 @@ def w2v_keyvectors(model, keys, n_topwords=30):
             values.append(val[0])
         key_vectors[key] = values
 
-    with open('streamlit_app/models/w2v_key_vecs.json','w') as f:
+    with open(RELMODELPATH+'w2v_key_vecs.json','w') as f:
         json.dump(key_vectors,f)
 # w2v_keyvectors(w2v_model,keys)
 
 # load lda model
-# with open(relmodelpath+'lda_model_n20.pkl','rb') as f:
-#     lda = pickle.load(f)
-
-lda = compress_pickle.load(relmodelpath+'compressed_lda_model_n20', compression='gzip')
-# compress_pickle.dump(lda,relmodelpath+'compressed_lda_model_n20', compression='gzip')
+lda = compress_pickle.load(RELMODELPATH+'lda_model_n20.gz', compression='gzip')
+# compress_pickle.dump(lda,RELMODELPATH+'compressed_lda_model_n20', compression='gzip')
 
 # load vectorizer
-with open(relmodelpath+'vectorizer.pkl','rb') as f:
+with open(RELMODELPATH+'vectorizer.pkl','rb') as f:
     vectorizer = pickle.load(f)
 feature_names = vectorizer.get_feature_names_out()
 
@@ -72,7 +69,8 @@ def lda_keyvectors(model, feature_names, n_topwords=30):
         term_list = [feature_names[i] for i in topic.argsort()[:-n_topwords - 1:-1]]
         topic_vectors[val]=term_list
     
-    with open('streamlit_app/models/lda_key_vecs.json','w') as f:
+    with open(RELMODELPATH+'lda_key_vecs.json','w') as f:
         json.dump(topic_vectors,f)
 
-lda_keyvectors(lda, feature_names)
+n_topwords = 30
+lda_keyvectors(lda, feature_names, n_topwords)

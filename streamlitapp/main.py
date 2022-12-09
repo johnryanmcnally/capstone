@@ -10,6 +10,8 @@ import cv2
 
 modelpath = 'streamlitapp/models/'
 
+### Site Header
+
 logo = Image.open(modelpath+'rec2logo_v2.png')
 st.set_page_config(
     page_title="Rec^2", page_icon=logo, layout='centered',
@@ -18,6 +20,8 @@ title_col1, title_col2 = st.columns([1,4])
 title_col1.image(logo, width=125)
 title_col2.markdown('# Recipe Exploration')
 title_col2.markdown('A place to learn about your favorite recipes and explore new ones')
+
+### User Entry
 
 entry_col1, mid, entry_col2 = st.columns([5,1,8], gap='small')
 
@@ -62,6 +66,9 @@ else:
     result = ''
 
 test_title = entry_col1.text_input('Enter A Dish Name: ', value = result, key='imgtitle')
+
+### Charts
+
 # this decorator + function makes it so the top charts don't regenerate when changing
 # from food type to ethnicity or number of tokens in t-SNE chart
 @st.experimental_memo

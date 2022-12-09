@@ -9,19 +9,19 @@ import json
 import spacy
 
 
-relpath = 'streamlitapp/models/'
-model = tf.keras.models.load_model(relpath+'model_reduced_e20_full.h5', compile=False)
+RELMODELPATH = 'streamlitapp/models/'
+model = tf.keras.models.load_model(RELMODELPATH+'model_reduced_e20_full.h5', compile=False)
 test_titles = ['chocolate cake', 'chocolate brownies', 'chicken noodle soup', 'mac and cheese', 'chicken diable']
 thresh = 0.015
 
 
 # Open JSON Files --------------------------------------------------------------
-f = open(relpath+'json/ingredients_999.json')
+f = open(RELMODELPATH+'json/ingredients_999.json')
 ing_set = json.load(f)
 ing_keys = list(ing_set.keys())
 f.close()
 
-f = open(relpath+'json/title_tokens_999.json')
+f = open(RELMODELPATH+'json/title_tokens_999.json')
 title_toks = json.load(f)
 title_toks_keys = list(title_toks.keys())
 f.close()

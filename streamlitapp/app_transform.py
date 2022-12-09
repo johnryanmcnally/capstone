@@ -7,11 +7,11 @@ import einops
 import streamlit as st
 import cv2
 
-modelpath = 'streamlitapp/models/'
+RELMODELPATH = 'streamlitapp/models/'
 def get_model():
     IMAGE_SHAPE = (224, 224, 3)     # Mobilenet Image Embedder Compatibility
-    DF_PATH = modelpath+"df.csv"
-    WEIGHTS_PATH = modelpath+"cp-0022.ckpt"
+    DF_PATH = RELMODELPATH+"df.csv"
+    WEIGHTS_PATH = RELMODELPATH+"cp-0022.ckpt"
 
     def standardize(s):
         s = tf.strings.lower(s)
