@@ -3,6 +3,8 @@
   <h1 align="center">Rec<sup>2</sup>: Recipe Recognition</h1>
 </p>
 
+Link to [Medium Article](https://medium.com/@mbdaly/rec%C2%B2-recipe-exploration-989166d64e4)
+
 This project provides a pipeline of machine learning models that interpret food recipes:
 - Image &rarr; Recipe Title (Recipe Recognition)
 - Recipe Title &rarr; Ingredient List (Ingredient Prediction)
