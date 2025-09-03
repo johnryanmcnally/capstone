@@ -3,7 +3,7 @@ numpy
 altair
 json5
 pickleshare
-sklearn
+scikit-learn
 gensim
 tensorflow
 spacy
