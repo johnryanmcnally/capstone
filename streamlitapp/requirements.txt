@@ -4,6 +4,7 @@ altair
 json5
 pickleshare
 scikit-learn
+scipy<1.13
 gensim
 tensorflow
 spacy
