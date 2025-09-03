@@ -27,7 +27,7 @@ entry_col1, mid, entry_col2 = st.columns([5,1,8], gap='small')
 
 mid.markdown('## or')
 
-@st.experimental_singleton
+@st.cache_resource
 def transformer_model():
     return app_transform.get_model()
 transformer = transformer_model()
@@ -71,7 +71,7 @@ test_title = entry_col1.text_input('Enter A Dish Name: ', value = result, key='i
 
 # this decorator + function makes it so the top charts don't regenerate when changing
 # from food type to ethnicity or number of tokens in t-SNE chart
-@st.experimental_memo
+@st.cache_data
 def create_topcharts(test_title):
     # predict Ingredients based on input title
     ings = app_predict.predict_ingredients(test_title)
