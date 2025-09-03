@@ -1,15 +1,15 @@
-pandas==1.4.3
-numpy==1.23.3
-altair==4.2.0
-json5==0.9.10
-pickleshare==0.7.5
-sklearn==0.0
+pandas
+numpy
+altair
+json5
+pickleshare
+sklearn
 gensim
 tensorflow
-spacy==3.4.1
+spacy
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.0/en_core_web_sm-3.4.0-py3-none-any.whl
-streamlit==1.13.0
-pillow==8.2.0
-einops==0.6.0
-opencv-python-headless <= 4.5.1.48
-scipy==1.10.1
+streamlit
+pillow
+einops
+opencv-python-headless
+scipy
