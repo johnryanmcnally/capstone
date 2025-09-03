@@ -12,4 +12,3 @@ streamlit
 pillow
 einops
 opencv-python-headless
-scipy
