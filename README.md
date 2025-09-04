@@ -14,7 +14,7 @@ These models were initially trained using [Recipe1M+](http://pic2recipe.csail.mi
 
 ## How to Use
 ### Simple Inferencing
-If you're just interested in testing the existing models and exploring the relationships between various fods and ingredients, we tried to make that easy for you by setting up a hosted [Streamlit app](https://mcnaljr-capstone-streamlitappmain-e4lj1v.streamlit.app/) where you can easily submit your own images and recipes.
+If you're just interested in testing the existing models and exploring the relationships between various fods and ingredients, we tried to make that easy for you by setting up a hosted [Streamlit app](https://rec2recipes.streamlit.app/) where you can easily submit your own images and recipes.
 
 ### Using the Code
 First, download or fork the repo and your dataset of choice (if you are interested in training).
