@@ -210,6 +210,8 @@ def get_model():
     # Cache This ********************************************
     model = Captioner(tokenizer, feature_extractor=mobilenet, output_layer=output_layer,
                     units=225, dropout_rate=0.5, num_layers=2, num_heads=2)
-    model.load_weights(WEIGHTS_PATH)
+    checkpoint = tf.train.Checkpoint(model=model)
+    checkpoint.restore(WEIGHTS_PATH)
+    # model.load_weights()
     # Cache This ********************************************
     return model

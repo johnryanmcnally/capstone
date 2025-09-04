@@ -10,7 +10,7 @@ import spacy
 
 
 RELMODELPATH = 'streamlitapp/models/'
-model = tf.keras.models.load_model(RELMODELPATH+'model_reduced_e20_full.h5', compile=False)
+model = tf.keras.models.load_model(RELMODELPATH+'9-3-2025_model_reduced_e20_full.keras', compile=False)
 test_titles = ['chocolate cake', 'chocolate brownies', 'chicken noodle soup', 'mac and cheese', 'chicken diable']
 thresh = 0.015
 

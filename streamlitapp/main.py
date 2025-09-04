@@ -107,7 +107,7 @@ if test_title != '':
     with st.spinner('running'):
         ## t-SNE plot
         # load pre calculated df for t-SNE with n top words
-        @st.cache
+        @st.cache_data
         def load_df(n_topwords):
             return pd.read_csv(modelpath+'tsne_plot/tsnedf_{}.csv'.format(n_topwords))
         
